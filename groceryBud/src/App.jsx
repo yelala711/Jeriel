@@ -7,11 +7,15 @@ function App() {
   const [allData, setAllData] = useState([]);
   const [show, setShow] = useState(false);
   const [editIndex, setEditIndex] = useState();
+  const [notif, setNotif] = useState(" ");
 
   const handleAdd = () => {
     if (name.length !== 0) {
       setAllData((newData) => [...newData, name]);
+      setNotif({ name } + " is added in the basket");
       setName("");
+    } else if (name.length === 0) {
+      setNotif("Empty Input");
     }
   };
 
@@ -27,15 +31,22 @@ function App() {
   };
 
   const handleUpdate = () => {
-    allData.splice(editIndex, 1, name);
-    setAllData([...allData]);
-    setShow(false);
-    setName("");
+    if (name.length !== 0) {
+      allData.splice(editIndex, 1, name);
+      setAllData([...allData]);
+      setShow(false);
+      setNotif({ name } + " is added in the basket");
+      setName("");
+    } else if (name.length === 0) {
+      setNotif("Empty Input");
+    }
   };
 
   return (
     <div>
       <h2>Grocery Hub</h2>
+
+      {notif !== "" ? <p> {notif} </p> : NULL}
 
       <input
         name="name"
