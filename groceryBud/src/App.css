@@ -63,12 +63,17 @@ button {
     border-radius: 5px;
 }
 
-.editBTN {
+#editBTN {
     background-color: #77DD77;
 }
 
-.deleteBTN {
+#deleteBTN {
     background-color: #e66e6e;
+    color: white;
+}
+
+#addBTN {
+    background-color: #58a0ba;
     color: white;
 }
 

@@ -123,9 +123,13 @@ function App() {
       />
 
       {!show ? (
-        <button onClick={handleAdd}>Add</button>
+        <button id="addBTN" onClick={handleAdd}>
+          Add
+        </button>
       ) : (
-        <button onClick={handleUpdate}>Update</button>
+        <button id="addBTN" onClick={handleUpdate}>
+          Update
+        </button>
       )}
 
       {allData.map((val, i) => (
@@ -136,7 +140,7 @@ function App() {
             </td>
             <td>
               <button
-                class="editBTN"
+                id="editBTN"
                 className="edit"
                 onClick={() => handleEdit(i)}
               >
@@ -145,7 +149,7 @@ function App() {
             </td>
             <td>
               <button
-                class="deleteBTN"
+                id="deleteBTN"
                 className="delete"
                 onClick={() => handleDelete(i)}
               >
@@ -156,7 +160,7 @@ function App() {
         </div>
       ))}
       <br />
-      <button class="delete" className="clear" onClick={() => handleClear()}>
+      <button id="deleteBTN" className="clear" onClick={() => handleClear()}>
         Clear All
       </button>
     </div>
