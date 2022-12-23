@@ -84,7 +84,6 @@ function App() {
           </p>
         ) : (
           <p class="notification" id="added">
-            {" "}
             '{newItem}' is added to the basket
           </p>
         )
