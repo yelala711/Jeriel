@@ -1,4 +1,4 @@
-import styled from "ProductCard.styled.tsx";
+import styled from "styled-components";
 
 type WrapperProps = {
   background: string;
@@ -10,7 +10,7 @@ type AddButtonProps = {
 
 export const Wrapper = styled.div<WrapperProps>`
   display: grid;
-  align-items: flex-end;
+  align-items: f1lex-end;
   width: 240px;
   height: 340px;
   border-radius: 20px;
