@@ -9,14 +9,16 @@ import {
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Product } from "../../models";
-import useShop from "../../ShopContext";
+import useShop from "../../models/ShopContext";
 
 export const ProductCard = ({ name, imageUrl, price }: Product) => {
   const { products, addToCart, removeFromCart } = useShop();
   const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
-    const productIsInCart = products.find((product) => product.name === name);
+    const productIsInCart = products.find(
+      (product: { name: string }) => product.name === name
+    );
 
     if (productIsInCart) {
       setIsInCart(true);

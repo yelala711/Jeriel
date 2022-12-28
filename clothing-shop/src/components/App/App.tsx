@@ -1,9 +1,9 @@
-import styled from "style-components";
+import styled from "styled-components";
 import { Link, Route, Routes } from "react-router-dom";
 import { LinksWrapper, TitleWrapper, Wrapper } from "./App.styled";
 import { Cart } from "../Cart";
 import { Products } from "../Products";
-import { ShopProvider } from "./ShopContext";
+import { ShopProvider } from "../../models/ShopContext";
 
 export const App = () => {
   return (
