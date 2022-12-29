@@ -5,7 +5,12 @@ import {
   TextContainer,
   Title,
   Wrapper,
-} from "./ProductCard.styled";
+  QtyContainer,
+  Decrement,
+  QuantityText,
+  Increment,
+  InfoContainer,
+} from "./CartCard.styled";
 
 import { Product } from "../../models";
 import { useContext, useState, useEffect } from "react";
@@ -13,7 +18,7 @@ import { ClothingShopContext } from "../Context";
 import { FiGift } from "react-icons/fi";
 import { FaGift } from "react-icons/fa";
 
-export const ProductCard = ({ name, imageUrl, price, quantity }: Product) => {
+export const CartCard = ({ name, imageUrl, price, quantity }: Product) => {
   const {
     products,
     addToCart,
@@ -21,9 +26,11 @@ export const ProductCard = ({ name, imageUrl, price, quantity }: Product) => {
     saved,
     removeFromWishlist,
     addToWishlist,
+    updateCart,
   } = useContext(ClothingShopContext);
   const [isInCart, setIsInCart] = useState(false);
   const [isInWish, setIsInWish] = useState(false);
+  const [qty, setQuantity] = useState(quantity);
 
   useEffect(() => {
     const cartItems = products.find(
@@ -48,6 +55,10 @@ export const ProductCard = ({ name, imageUrl, price, quantity }: Product) => {
     }
   }, [products, saved, name]);
 
+  useEffect(() => {
+    updateCart({ name, imageUrl, price }, qty);
+  }, [qty]);
+
   const handleClick = () => {
     const product = { name, imageUrl, price, quantity };
     if (isInCart) {
@@ -66,6 +77,16 @@ export const ProductCard = ({ name, imageUrl, price, quantity }: Product) => {
     }
   };
 
+  const handleAdd = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleSub = () => {
+    if (qty > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <Wrapper background={imageUrl}>
       <AddButton2 isInWish={isInWish} onClick={handleWishlist}>
@@ -74,10 +95,17 @@ export const ProductCard = ({ name, imageUrl, price, quantity }: Product) => {
       <AddButton isInCart={isInCart} onClick={handleClick}>
         <p>{isInCart ? "-" : "+"}</p>
       </AddButton>
-      <TextContainer>
-        <Title>{name}</Title>
-        <SubTitle>₱ {price}.00</SubTitle>
-      </TextContainer>
+      <InfoContainer>
+        <TextContainer>
+          <Title>{name}</Title>
+          <SubTitle>₱ {price}.00</SubTitle>
+        </TextContainer>
+        <QtyContainer>
+          <Decrement onClick={handleSub}>-</Decrement>
+          <QuantityText>{quantity}</QuantityText>
+          <Increment onClick={handleAdd}>+</Increment>
+        </QtyContainer>
+      </InfoContainer>
     </Wrapper>
   );
 };
